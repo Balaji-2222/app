@@ -52,7 +52,7 @@ class Appointments extends Component {
   render() {
     const {list, isStarred} = this.state
     const colorChange = isStarred ? 'blue-color' : 'white-color'
-
+    const newList = list.filter(eachItem => eachItem.isFavourite === isStarred)
     return (
       <div className="bgContainer">
         <div className="sideContainer">
@@ -93,7 +93,7 @@ class Appointments extends Component {
           Starred
         </button>
         <ul>
-          {list.map(eachItem => (
+          {newList.map(eachItem => (
             <AppointmentItem
               eachItem={eachItem}
               starColorChange={this.starColorChange}

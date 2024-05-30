@@ -1,7 +1,6 @@
 const AppointmentItem = props => {
   const {eachItem, starColorChange} = props
   const {title, date, id, isFavourite} = eachItem
-  console.log(isFavourite)
 
   const changeColor = () => {
     starColorChange(id)
