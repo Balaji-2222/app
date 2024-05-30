@@ -1,0 +1,10 @@
+.sideContainer {
+  display: flex;
+  flex-direction: row;
+}
+.blue-color {
+  background-color: blue;
+}
+.white-color {
+  background-color: white;
+}
