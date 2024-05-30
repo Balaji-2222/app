@@ -52,55 +52,73 @@ class Appointments extends Component {
   render() {
     const {list, isStarred} = this.state
     const colorChange = isStarred ? 'blue-color' : 'white-color'
-    const newList = list.filter(eachItem => eachItem.isFavourite === isStarred)
+    let newList = ''
+    if (isStarred) {
+      newList = list.filter(eachItem => eachItem.isFavourite === isStarred)
+    } else if (isStarred === true || isStarred === false) {
+      newList = list
+    }
     return (
       <div className="bgContainer">
-        <div className="sideContainer">
-          <div className="bgContainer">
-            <h1 className="topHeading">Add Appointment</h1>
-            <h1 className="titleHeading">Title</h1>
-            <input
-              type="text"
-              placeholder="Title"
-              onChange={this.changeTitle}
-            />
-            <h1 className="date">Date</h1>
-            <input
-              type="date"
-              placeholder="dd/mm/yyyy"
-              onChange={this.changeDate}
-            />
-            <br />
-            <button type="submit" onClick={this.changeDetails}>
-              ADD
+        <div className="mainContainer">
+          <div className="listContainer">
+            <div>
+              <h1 className="topHeading">Add Appointment</h1>
+              <label htmlFor="head1" className="titleHeading">
+                TITLE
+              </label>
+              <br />
+              <input
+                id="head1"
+                type="text"
+                placeholder="Title"
+                onChange={this.changeTitle}
+              />
+              <br />
+              <label htmlFor="head2" className="date">
+                DATE
+              </label>
+              <br />
+              <input
+                id="head2"
+                type="date"
+                placeholder="dd/mm/yyyy"
+                onChange={this.changeDate}
+              />
+              <br />
+              <button type="submit" onClick={this.changeDetails}>
+                ADD
+              </button>
+            </div>
+            <div>
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/appointments-app/appointments-img.png"
+                alt="appointments"
+                className="image"
+              />
+            </div>
+          </div>
+          <hr className="seprator" />
+          <div className="output">
+            <h1 className="listHeading">Appointments</h1>
+            <button
+              type="button"
+              onClick={this.changeListItems}
+              className={colorChange}
+            >
+              Starred
             </button>
           </div>
-          <div>
-            <img
-              src="https://assets.ccbp.in/frontend/react-js/appointments-app/appointments-img.png"
-              alt="appointments"
-              className="image"
-            />
-          </div>
+          <ul className="arrange">
+            {newList.map(eachItem => (
+              <AppointmentItem
+                eachItem={eachItem}
+                starColorChange={this.starColorChange}
+                key={eachItem.id}
+              />
+            ))}
+          </ul>
         </div>
-
-        <h1 className="listHeading">Add Appointments</h1>
-        <button
-          type="button"
-          onClick={this.changeListItems}
-          className={colorChange}
-        >
-          Starred
-        </button>
-        <ul>
-          {newList.map(eachItem => (
-            <AppointmentItem
-              eachItem={eachItem}
-              starColorChange={this.starColorChange}
-              key={eachItem.id}
-            />
-          ))}
-        </ul>
       </div>
     )
   }

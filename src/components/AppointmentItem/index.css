@@ -1,1 +1,16 @@
-/* Write your CSS here */
+.listItem {
+  display: flex;
+  flex-direction: row;
+  border: 2px solid #b5b7c4;
+  margin-right: 15px;
+  height: 100px;
+  width: 270px;
+  border-radius: 10px;
+}
+.button {
+  background-color: transparent;
+  border-width: 0px;
+}
+.inside {
+  margin-left: 5px;
+}

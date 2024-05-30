@@ -1,7 +1,11 @@
+import {format} from 'date-fns'
+
+import './index.css'
+
 const AppointmentItem = props => {
   const {eachItem, starColorChange} = props
   const {title, date, id, isFavourite} = eachItem
-
+  const newDate = format(new Date(date), 'dd MMMM yyyy, EEEE')
   const changeColor = () => {
     starColorChange(id)
   }
@@ -11,10 +15,17 @@ const AppointmentItem = props => {
 
   return (
     <li className="listItem">
-      <h1>{title}</h1>
-      <p>{date}</p>
-      <button type="button" onClick={changeColor}>
-        <img src={imageUrl} alt="itemImage" />
+      <div className="inside">
+        <p>{title}</p>
+        <p>{newDate}</p>
+      </div>
+      <button
+        type="button"
+        onClick={changeColor}
+        data-testid="star"
+        className="button"
+      >
+        <img src={imageUrl} alt="star" />
       </button>
     </li>
   )
